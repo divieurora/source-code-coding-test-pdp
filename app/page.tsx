@@ -1,69 +1,75 @@
-import Image from "next/image";
+import { submitPengajuan } from './actions'
 
-export default function Home() {
+export default function CollectDataPage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <main className="max-w-3xl mx-auto p-8">
+      <h1 className="text-2xl font-bold mb-6">Form Pengajuan Kredit Digital</h1>
+      
+      <form action={submitPengajuan} className="flex flex-col gap-6">
+        
+        <div className="bg-gray-50 p-4 rounded border">
+          <h2 className="font-bold mb-3 border-b pb-2">Data Konsumen</h2>
+          <div className="grid grid-cols-2 gap-4">
+            <input name="nama" placeholder="Nama Lengkap" required className="border p-2 rounded" />
+            <input name="nik" placeholder="NIK" required className="border p-2 rounded" />
+            <input name="tanggalLahir" type="date" required className="border p-2 rounded" />
+            <select name="statusPerkawinan" required className="border p-2 rounded bg-white">
+              <option value="">Pilih Status Perkawinan...</option>
+              <option value="Belum Menikah">Belum Menikah</option>
+              <option value="Menikah">Menikah</option>
+            </select>
+            <input name="dataPasangan" placeholder="Data Pasangan (Jika Ada)" className="border p-2 rounded col-span-2" />
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        <div className="bg-gray-50 p-4 rounded border">
+          <h2 className="font-bold mb-3 border-b pb-2">Data Kendaraan</h2>
+          <div className="grid grid-cols-2 gap-4">
+            <input name="dealer" placeholder="Nama Dealer" required className="border p-2 rounded col-span-2" />
+            <input name="merkKendaraan" placeholder="Merk Kendaraan" required className="border p-2 rounded" />
+            <input name="modelKendaraan" placeholder="Model Kendaraan" required className="border p-2 rounded" />
+            <input name="tipeKendaraan" placeholder="Tipe Kendaraan" required className="border p-2 rounded" />
+            <input name="warnaKendaraan" placeholder="Warna Kendaraan" required className="border p-2 rounded" />
+            <input name="hargaKendaraan" type="number" placeholder="Harga Kendaraan" required className="border p-2 rounded col-span-2" />
+          </div>
         </div>
-      </main>
-    </div>
-  );
+
+        <div className="bg-gray-50 p-4 rounded border">
+          <h2 className="font-bold mb-3 border-b pb-2">Data Pinjaman</h2>
+          <div className="grid grid-cols-2 gap-4">
+            <input name="asuransi" placeholder="Jenis Asuransi" required className="border p-2 rounded" />
+            <input name="downPayment" type="number" placeholder="Down Payment (DP)" required className="border p-2 rounded" />
+            <input name="lamaKreditBulan" type="number" placeholder="Lama Kredit (Bulan)" required className="border p-2 rounded" />
+            <input name="angsuranBulan" type="number" placeholder="Angsuran / Bulan" required className="border p-2 rounded" />
+          </div>
+        </div>
+
+        <div className="bg-blue-50 p-4 rounded border border-blue-200">
+          <h2 className="font-bold mb-3 border-b border-blue-200 pb-2">Upload Dokumen</h2>
+          <div className="grid grid-cols-2 gap-4 text-sm">
+            <div>
+              <label className="block mb-1 font-semibold">KTP</label>
+              <input type="file" name="fileKtp" accept="image/*,.pdf" className="bg-white border w-full p-1" />
+            </div>
+            <div>
+              <label className="block mb-1 font-semibold">Kartu Keluarga</label>
+              <input type="file" name="fileKk" accept="image/*,.pdf" className="bg-white border w-full p-1" />
+            </div>
+            <div>
+              <label className="block mb-1 font-semibold">Surat Pemesanan Kendaraan (SPK)</label>
+              <input type="file" name="fileSpk" accept="image/*,.pdf" className="bg-white border w-full p-1" />
+            </div>
+            <div>
+              <label className="block mb-1 font-semibold">Bukti Bayar Tanda Jadi</label>
+              <input type="file" name="fileBuktiBayar" accept="image/*,.pdf" className="bg-white border w-full p-1" />
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded mt-2 shadow">
+          Submit Data Pengajuan
+        </button>
+      </form>
+    </main>
+  )
 }

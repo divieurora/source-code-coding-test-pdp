@@ -1,0 +1,38 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Pengajuan {
+  id                 Int      @id @default(autoincrement())
+  
+  nama               String
+  nik                String
+  tanggalLahir       String
+  statusPerkawinan   String
+  dataPasangan       String?
+  
+  dealer             String
+  merkKendaraan      String
+  modelKendaraan     String
+  tipeKendaraan      String
+  warnaKendaraan     String
+  hargaKendaraan     Float
+  
+  asuransi           String
+  downPayment        Float
+  lamaKreditBulan    Int
+  angsuranBulan      Float
+  
+  dokumenKtp         String?
+  dokumenSpk         String?
+  dokumenBuktiBayar  String?
+  dokumenKk          String? 
+
+  status             String   @default("PENDING")
+  createdAt          DateTime @default(now())
+}
